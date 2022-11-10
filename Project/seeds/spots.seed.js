@@ -126,7 +126,7 @@ const createObjects = async function() {
             },
             {
             name: "Tarifa, Pista Vereda de la Reginosa", 
-            coordinates: "6.087044, -5.769359",
+            coordinates: "36.087044, -5.769359",
             address: "Pista Vereda de la Reginosa, 11391 Tarifa Spain",
             province: "Cádiz",
             rating: 8,

@@ -15,25 +15,29 @@
     <h3>{{province}}</h3>
     <h3>{{coordinates}}</h3>
     <h6>AMENITIES:</h6>
-
-    {{#if amenities.Trash_can}}
-    <h3>Trash can</h3>
+    {{#if amenities }}
+        {{#if amenities.Trash_can}}
+        <h3>Trash can</h3>
+        {{/if}}
+        {{#if amenities.Shower}}
+        <h3>Shower</h3>
+        {{/if}}
+        {{#if amenities.Toilet}}
+        <h3>Toilet</h3>
+        {{/if}}
+        {{#if amenities.Drinking_water}}
+        <h3>Drinking water</h3>
+        {{/if}}
+        {{#if amenities.Webpage}}
+        <h3>Webpage</h3>
+        {{/if}}
+        {{#if amenities.Electricity}}
+        <h3>Electricity</h3>
+        {{/if}}
     {{/if}}
-     {{#if amenities.Shower}}
-    <h3>Shower</h3>
-    {{/if}}
-     {{#if amenities.Toilet}}
-    <h3>Toilet</h3>
-    {{/if}}
-     {{#if amenities.Drinking_water}}
-    <h3>Drinking water</h3>
-    {{/if}}
-     {{#if amenities.Webpage}}
-    <h3>Webpage</h3>
-    {{/if}}
-     {{#if amenities.Electricity}}
-    <h3>Electricity</h3>
-    {{/if}}
+    {{#unless amenities}}
+        <h3>No amenities known in this spot</h3>
+    {{/unless}}
     
     <hr style="width: 70%;">
 
