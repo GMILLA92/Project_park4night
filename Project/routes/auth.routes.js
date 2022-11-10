@@ -24,12 +24,12 @@ const CommentLike = require("../models/CommentLike.model")
 
 // GET /auth/signup
 router.get("/signup", isLoggedOut, (req, res) => {
-  res.render("auth/signup", {layout:false});
+  res.render("auth/signup", { layout: false });
 });
 
 // POST /auth/signup
 router.post("/signup", isLoggedOut, (req, res) => {
-  const {fullName, username, email, password } = req.body;
+  const { fullName, username, email, password } = req.body;
   console.log(req.body)
 
   // Check that username, email, and password are provided
@@ -37,7 +37,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
     res.status(400).render("auth/signup", {
       errorMessage:
         "All fields are mandatory. Please provide your username, email and password.",
-        layout: false
+      layout: false
     });
 
     return;
@@ -58,10 +58,11 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .status(400)
       .render("auth/signup", {
         errorMessage: "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
-    layout: false});
+        layout: false
+      });
     return;
   }
-  
+
 
   // Create a new user - start by hashing the password
   bcrypt
@@ -77,23 +78,23 @@ router.post("/signup", isLoggedOut, (req, res) => {
 
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
-        res.status(500).render("auth/signup",  { errorMessage: error.message, layout: false });
+        res.status(500).render("auth/signup", { errorMessage: error.message, layout: false });
       } else if (error.code === 11000) {
         res.status(500).render("auth/signup", {
           errorMessage:
             "Username and email need to be unique. Provide a valid username or email.",
-            layout: false
+          layout: false
         });
       } else {
         next(error);
       }
     });
-   
+
 });
 
 // GET /auth/login
 router.get("/login", isLoggedOut, (req, res) => {
-  res.render("auth/login", {layout:false});
+  res.render("auth/login", { layout: false });
 });
 
 // POST /auth/login
@@ -105,7 +106,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
     res.status(400).render("auth/login", {
       errorMessage:
         "All fields are mandatory. Please provide username, email and password.",
-        layout: false
+      layout: false
     });
 
     return;
@@ -170,39 +171,40 @@ router.post("/logout", isLoggedIn, (req, res) => {
 
 //GET /users/user-profile
 router.get("/profile", isLoggedIn, (req, res) => {
-  res.render("users/user-profile", req.session.currentUser );
-  
+  res.render("users/user-profile", req.session.currentUser);
+
 });
 
-  
+
 //GET /spots/addSpot
 router.get("/addSpot", (req, res) => {
   res.render("spots/addSpot");
 });
 
 router.post("/addSpot", fileUploader.array('images'), async (req, res) => {
-  const {name, coordinates, address, description, province, rating, webpage, BBQ, Toilet, Electricity, Trash_can, Drinking_water, Shower} = req.body;
+  const { name, coordinates, address, description, province, rating, webpage, BBQ, Toilet, Electricity, Trash_can, Drinking_water, Shower } = req.body;
   console.log(req)
-  const images = {imagesUrl: []}
+  const images = { imagesUrl: [] }
   if (req.file) {
     images.imagesUrl.push(req.file.path)
   } else if (req.files) {
-    req.files.forEach((file) =>{
+    req.files.forEach((file) => {
       images.imagesUrl.push(file.path)
     })
   }
 
   const amenities = {}
-  if (BBQ) {amenities.BBQ = true}
-  if (Toilet) {amenities.Toilet = true}
-  if (Electricity) {amenities.Electricity = true}
-  if (Trash_can) {amenities.Trash_can = true}
-  if (Drinking_water) {amenities.Drinking_water = true}
-  if (Shower) {amenities.Shower = true}
+  if (BBQ) { amenities.BBQ = true }
+  if (Toilet) { amenities.Toilet = true }
+  if (Electricity) { amenities.Electricity = true }
+  if (Trash_can) { amenities.Trash_can = true }
+  if (Drinking_water) { amenities.Drinking_water = true }
+  if (Shower) { amenities.Shower = true }
 
-  try{
-    const newSpot = await Spot.create({name, coordinates, address, images, description, province, amenities, rating, webpage })
+  try {
+    const newSpot = await Spot.create({ name, coordinates, address, images, description, province, amenities, rating, webpage })
     console.log("Spot Created")
+
     res.redirect("/map")
   } catch(err){
       if (err instanceof mongoose.Error.ValidationError) {
@@ -216,34 +218,17 @@ router.post("/addSpot", fileUploader.array('images'), async (req, res) => {
       } else {
         next(err);
       }
+
     console.log(err)
    
   }
 })
 
-router.get("/savedSpots" ,async (req, res) => {
+router.get("/savedSpots", async (req, res) => {
   console.log("hola")
-//  console.log(req.session.currentUser)
-  const UserSaved = await User.findById(req.session.currentUser._id).populate("UserSpot").populate({
-    path: "UserSpot",
-    populate: {
-      path: "spot",
-      model: "Spot",
-      populate: {
-        path: "comments",
-        model: "Comment",
-        populate: {
-          path: "author",
-          model: "User",
-          populate: {
-            path: "commentLike",
-            model: "CommentLike"
-          }
-        }
-      }
-    }
-  })
-
+  //  console.log(req.session.currentUser)
+  const UserSaved = await User.findById(req.session.currentUser._id).populate("favouriteSpots")
+  console.log('USUARIO', UserSaved.favouriteSpots)
   // console.log(UserSaved.UserSpot[0].spot.comments[0].author)
   // const result = await UserSpot.findById(UserSaved.UserSpot._id).populate("spot")
   //console.log(UserSaved)
@@ -264,35 +249,40 @@ router.get("/spot/:spotId", async (req, res) => {
       }
     })
 
+    const user = await User.findById(req.session.currentUser._id)
+
+    dbSpot.isUserFavourite = user.favouriteSpots.includes(dbSpot._id)
+
     console.log(dbSpot)
     res.render("spots/spot-details", dbSpot)
-  }catch (err) {
+  } catch (err) {
     console.log(err)
   }
 })
 
 //GET 
 router.get("/map", isLoggedIn, async (req, res) => {
-  try{
+  try {
     const spotsDb = await Spot.find()
     const mapCenter = [-3.703339, 40.416729]
     const mapZoom = 5
-    res.render("map", {layout:false, user: req.session.currentUser, spotsDb, mapCenter, mapZoom});  
-  }catch(err){
+    res.render("map", { layout: false, user: req.session.currentUser, spotsDb, mapCenter, mapZoom });
+  } catch (err) {
     console.log(err)
   }
 });
 
 
 
-router.get("/addComment/:spotID",  (req, res) => {
+router.get("/addComment/:spotID", (req, res) => {
   console.log(req.body)
 
-  res.render("comments/addComment", {spotID: req.params.spotID});
-  
+  res.render("comments/addComment", { spotID: req.params.spotID });
+
 });
 
 router.post("/publishComment/:spotID", async (req, res) => {
+
   
     try{
       const authorSaved = await User.findById(req.session.currentUser._id)
@@ -312,6 +302,37 @@ router.post("/publishComment/:spotID", async (req, res) => {
     } catch(err){
       console.log(err)
     }
+
+    const newComment = await Comment.create(comment)
+    await Spot.findByIdAndUpdate(req.params.spotID, { $push: { comments: newComment._id } });
+    await User.findByIdAndUpdate(req.session.currentUser._id, { $push: { comments: newComment._id } });
+
+    console.log("Comment Created")
+    res.redirect("/")
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+router.post('/:spotId/saveFavouriteSpot', async (req, res) => {
+  if (!req.session?.currentUser?._id) return res.status(403).json({
+    message: 'Missing user session Id'
   })
+
+  const user = await User.findById(req.session.currentUser._id)
+  console.log('before if', user.favouriteSpots.includes(req.params.spotId))
+  if (!user.favouriteSpots.includes(req.params.spotId)) {
+
+    user.favouriteSpots.push(req.params.spotId)
+  } else {
+    console.log('user.favouriteSpots', user.favouriteSpots)
+    user.favouriteSpots = user.favouriteSpots.filter(fspot => fspot.toString() !== req.params.spotId)
+    console.log('user.favouriteSpots 2', user.favouriteSpots)  
+  }
+  await user.save()
+  return res.status(200)
+})
+
+
 
 module.exports = router;

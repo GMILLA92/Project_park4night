@@ -39,6 +39,10 @@ const spotSchema = new Schema(
     webpage: {
         type: String,
     },
+    isUserFavourite: {
+        type: Boolean,
+        required: false,
+    },
     UserSpot: { type: Schema.Types.ObjectId, ref: 'UserSpot' },
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
     description: {
