@@ -13,21 +13,21 @@
   <body>
     <nav>
       <ul class="nav-bar">
-        <li id="to-left">
+        <div id="to-left">
           <img class="van-logo" src="/images/VAN.png" alt="">
           {{!-- <p>AIRBNVAN</p> --}}
-        </li>
-        <li id="to-right">
+        </div>
+        <div id="to-right">
             {{#unless user}}
-                <a href="/signup">Signup</a> <span> | </span>
-                <a href="/login">Login</a> 
+                <a href="/signup">Sign up</a> <span> | </span>
+                <a href="/login">Log in</a> 
             {{/unless}}
             {{#if user}}
                 <form action="/logout" method="post">
                     <button type="submit" id="logout_button">Logout</button>
                 </form>
             {{/if}}
-        </li>
+        </div>
       </ul>
     </nav>
 
@@ -41,11 +41,10 @@
         {{!-- Create the markers and the popups for every location --}}
         {{#each spotsDb}}
           <div class="hidden popup">
-            <div class="scroll-container">
-              {{#each this.images.imagesUrl}}
-                <div class="scroll-page"> <img id="spot" src= "{{this}}"/> </div>
-              {{/each}}
-             </div>
+            
+                <div class="scroll-page2"> <img id="spot-map" src= "{{this.images.imagesUrl.[0]}}"/> </div>
+           
+          
              <h1>{{this.name}}</h1>
             <a href="/spot/{{this._id}}">See more</a>
            </div>
