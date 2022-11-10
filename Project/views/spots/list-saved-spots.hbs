@@ -1,38 +1,41 @@
-{{#each UserSpot}}
 
-
+{{#each favouriteSpots}}
 <div id="list_spots">
+     <a href="/spot/{{_id}}" id="spotDetails">{{name}}</a>
+    <div id="description">{{description}}</div>
+    
+    <div class="scroll-container">
+    {{#each images.imagesUrl}}
 
-     <div class="scroll-container">
-    {{#each this.spot.images.imagesUrl}}
      <div class="scroll-page"> <img id="spot" src= "{{this}}"/> </div>
     {{/each}}
     </div>
 
+
      <a href="/spot/{{this.spot._id}}" id="spotDetails">{{this.spot.name}}</a>
     <div id="description">{{this.spot.description}}</div>
-    
-   
+ 
 
-    <h3>{{this.spot.coordinates}}</h3>
-    {{#if this.spot.amenities.Webpage}}
+    <h3>{{coordinates}}</h3>
+    {{#if amenities.Webpage}}
+
         <h3>Webpage</h3>
     {{/if}}
     <h6>AMENITIES:</h6>
 
-    {{#if this.spot.amenities.Trash_can}}
+    {{#if amenities.Trash_can}}
     <h3>Trash can</h3>
     {{/if}}
-     {{#if this.spot.amenities.Shower}}
+     {{#if amenities.Shower}}
     <h3>Shower</h3>
     {{/if}}
-     {{#if this.spot.amenities.Toilet}}
+     {{#if amenities.Toilet}}
     <h3>Toilet</h3>
     {{/if}}
-     {{#if this.spot.amenities.Drinking_water}}
+     {{#if amenities.Drinking_water}}
     <h3>Drinking water</h3>
     {{/if}}
-     {{#if this.spot.amenities.Electricity}}
+     {{#if amenities.Electricity}}
     <h3>Electricity</h3>
     {{/if}}
     

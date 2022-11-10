@@ -24,6 +24,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    favouriteSpots: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Spot'
+    }],
     UserSpot: [{ type: Schema.Types.ObjectId, ref: 'UserSpot' }],
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
     commentLike: [{ type: Schema.Types.ObjectId, ref: 'CommentLike' }]

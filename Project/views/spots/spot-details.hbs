@@ -14,7 +14,19 @@
     
     <h3>{{province}}</h3>
     <h3>{{coordinates}}</h3>
-    <h6>AMENITIES:</h6>
+
+    <form action="/{{_id}}/saveFavouriteSpot" method="POST" >
+        <button type="submit">
+            {{#if isUserFavourite}}
+                Remove
+            {{else}}
+                Add 
+            {{/if}}
+             favourite
+
+        </button>
+    </form>
+    <h6>AMENITIES :</h6>
 
     {{#if amenities.Trash_can}}
     <h3>Trash can</h3>
