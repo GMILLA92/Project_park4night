@@ -1,23 +1,21 @@
 <div id="form-spot">
-  <h7>Create Spot</h7>
   <form action="/addSpot" method="POST" enctype="multipart/form-data"> 
-
     <label><h7>Full Name</h7>
-      <input type="text" name="name" placeholder="Spot Name" />
+      <input type="text" name="name" size="35" placeholder="Spot Name" />
     </label>
 
 
     <label><h7>Coordinates</h7>
 
-      <input type="text" width="90%" name="coordinates" placeholder="Coordenates" />
+      <input type="text" size="35" name="coordinates" pattern= "[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)" placeholder="FORMAT: 43.549198, -5.623890" />
     </label>
 
     <label><h7>Address</h7>
-      <input type="text" name="address" placeholder="Address" />
+      <input type="text" name="address" size="35" placeholder="Address" />
     </label>
 
     <label><h7>Province</h7>
-      <input type="text" name="province" placeholder="Address" />
+      <input type="text" name="province" size="35" placeholder="Province" />
 
     </label>
 
@@ -53,11 +51,11 @@
     </label>
 
     <label><h7>Rating</h7>
-      <input type="number" min="0" max="10" name="rating" id="ratinginput">
+      <input type="number" id="ratinginput" min="0" max="10" size="10" name="rating" >
     </label>
 
     <label><h7>Webpage</h7>
-      <input type="url" name="webpage" id="webpageInput">
+      <input type="url" name="webpage" size="35" id="webpageInput">
     </label>
 
 

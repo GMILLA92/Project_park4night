@@ -1,4 +1,5 @@
 const express = require('express');
+const isLoggedOut = require('../middleware/isLoggedOut');
 const router = express.Router();
 const Spot = require("../models/Spot.model")
 

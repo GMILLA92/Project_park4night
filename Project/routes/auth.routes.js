@@ -148,7 +148,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
           // Remove the password field
           delete req.session.currentUser.password;
 
-          res.redirect("/");
+          res.redirect("/map");
         })
         .catch((err) => next(err)); // In this case, we send error handling to the error handling middleware.
     })
@@ -204,6 +204,7 @@ router.post("/addSpot", fileUploader.array('images'), async (req, res) => {
   try {
     const newSpot = await Spot.create({ name, coordinates, address, images, description, province, amenities, rating, webpage })
     console.log("Spot Created")
+
     res.redirect("/")
   } catch (err) {
     console.log(err)
@@ -269,13 +270,24 @@ router.get("/addComment/:spotID", (req, res) => {
 
 router.post("/publishComment/:spotID", async (req, res) => {
 
-  try {
-    const authorSaved = await User.findById(req.session.currentUser._id)
-    const spotSaved = await Spot.findById(req.params.spotID)
-    const comment = {
-      spot: spotSaved,
-      author: authorSaved,
-      description: req.body.description
+  
+    try{
+      const authorSaved = await User.findById(req.session.currentUser._id)
+      const spotSaved = await Spot.findById(req.params.spotID)
+      const comment = {
+        spot: spotSaved,
+        author: authorSaved,
+        description: req.body.description
+      }
+      
+      const newComment = await Comment.create(comment)
+      await  Spot.findByIdAndUpdate(req.params.spotID, { $push: { comments: newComment._id } });
+      await  User.findByIdAndUpdate(req.session.currentUser._id, { $push: { comments: newComment._id } });
+
+      console.log("Comment Created")
+      res.redirect("/map")
+    } catch(err){
+      console.log(err)
     }
 
     const newComment = await Comment.create(comment)
