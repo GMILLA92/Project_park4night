@@ -124,7 +124,22 @@ footer{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("/images/background.jpeg");;
+  background-image: url("/images/background.jpeg");
+}
+
+#background-3{
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("/images/background2.jpg");
+}
+h10{
+  position: absolute;
+  margin-top: 24px;
+  margin-left: 74px;
+  font-size: 25px;
+  color: white;
 }
 
 
@@ -623,4 +638,12 @@ h7 {
 
 .hidden{
   display: none;
+}
+
+#logo_amenities{
+  width: 25px;
+  display: flex;
+  margin: 14px;
+  align-content: center;
+  flex-direction: column-reverse
 }

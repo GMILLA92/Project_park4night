@@ -1,8 +1,15 @@
+{{#unless favouriteSpots.0.name}}
+  
+<div id="background-3">
+    <h10>No favourite spots</h10>
+</div>
+
+
+{{/unless}}
 
 {{#each favouriteSpots}}
 <div id="list_spots">
-     <a href="/spot/{{_id}}" id="spotDetails">{{name}}</a>
-    <div id="description">{{description}}</div>
+     
     
     <div class="scroll-container">
     {{#each images.imagesUrl}}
@@ -10,11 +17,8 @@
      <div class="scroll-page"> <img id="spot" src= "{{this}}"/> </div>
     {{/each}}
     </div>
-
-
-     <a href="/spot/{{this.spot._id}}" id="spotDetails">{{this.spot.name}}</a>
-    <div id="description">{{this.spot.description}}</div>
- 
+    <a href="/spot/{{_id}}" id="spotDetails">{{name}}</a>
+    <div id="description">{{description}}</div>     
 
     <h3>{{coordinates}}</h3>
     {{#if amenities.Webpage}}
@@ -24,19 +28,22 @@
     <h6>AMENITIES:</h6>
 
     {{#if amenities.Trash_can}}
-    <h3>Trash can</h3>
+    <img src="/images/bin.png" id="logo_amenities"/>
     {{/if}}
      {{#if amenities.Shower}}
-    <h3>Shower</h3>
+     <img src="/images/shower.png" id="logo_amenities"/>
     {{/if}}
      {{#if amenities.Toilet}}
-    <h3>Toilet</h3>
+    <img src="/images/toilet.png" id="logo_amenities"/>
     {{/if}}
      {{#if amenities.Drinking_water}}
-    <h3>Drinking water</h3>
+    <img src="/images/water-tap.png" id="logo_amenities"/>
     {{/if}}
      {{#if amenities.Electricity}}
-    <h3>Electricity</h3>
+    <img src="/images/energy.png" id="logo_amenities"/>
+    {{/if}}
+     {{#if amenities.BBQ}}
+    <img src="/images/barbecue.png" id="logo_amenities"/>
     {{/if}}
     
 </div>
