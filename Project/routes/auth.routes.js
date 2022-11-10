@@ -302,16 +302,6 @@ router.post("/publishComment/:spotID", async (req, res) => {
     } catch(err){
       console.log(err)
     }
-
-    const newComment = await Comment.create(comment)
-    await Spot.findByIdAndUpdate(req.params.spotID, { $push: { comments: newComment._id } });
-    await User.findByIdAndUpdate(req.session.currentUser._id, { $push: { comments: newComment._id } });
-
-    console.log("Comment Created")
-    res.redirect("/")
-  } catch (err) {
-    console.log(err)
-  }
 })
 
 router.post('/:spotId/saveFavouriteSpot', async (req, res) => {
@@ -330,7 +320,9 @@ router.post('/:spotId/saveFavouriteSpot', async (req, res) => {
     console.log('user.favouriteSpots 2', user.favouriteSpots)  
   }
   await user.save()
+  res.redirect("/savedSpots")
   return res.status(200)
+
 })
 
 

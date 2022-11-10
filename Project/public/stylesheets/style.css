@@ -32,6 +32,8 @@ h1 {
 
 #to-left{
   display: flex;
+  margin-top: -28px;
+  height: 70px;
 }
 
 #to-center{
@@ -39,9 +41,10 @@ h1 {
   align-items: center;
 }
 
-#to-rigth{
+#to-right{
   display: flex;
-  align-items: center;
+  margin-top: 0px;
+  justify-content: center;
 }
 
 .nav-bar {
@@ -124,9 +127,6 @@ footer{
   background-image: url("/images/background.jpeg");;
 }
 
-#image_label{
-  background-color: white;
-}
 
 img{
   width: 80px;
@@ -135,7 +135,6 @@ img{
 .van-logo{
   width: 76px;
   object-fit: cover;
-  margin-top: -46px;
   margin-left: -22px;
   position: absolute;
 }
@@ -184,6 +183,7 @@ img{
   border-width: thin;
   height: 34px;
   font-size: 18px;
+  border: solid;
 }
 
 #form label{
@@ -240,6 +240,7 @@ img{
   height: 34px;
   font-size: 18px;
   width: 247px;
+  border: solid;
 }
 
 #form-spot{
@@ -286,6 +287,7 @@ img{
   border-radius: 5px;
   border-width: thin;
   height: 27px;
+  border: solid;
   
 }
 
@@ -419,11 +421,21 @@ isLoggedIn
   font-size: 30px;
 }
 
-
+#favourite{
+  font-size: 18px;
+  color:rgb(220, 66, 66);
+}
 #spot{
   display: flex;
   width: 100vw;
 }
+
+
+#spot-map{
+  width: 50vw;
+}
+
+
 
 #list_spots{
   display: flex;
@@ -457,6 +469,15 @@ isLoggedIn
   scroll-behavior: smooth;
   display: flex;
 }
+
+.scroll-container2 {
+  width: 100vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  display: flex;
+}
+
 .scroll-page {
   display: flex;
   flex-wrap: no-wrap;
@@ -465,6 +486,16 @@ isLoggedIn
   height: 100%;
   font-size: 5em;
 }
+
+.scroll-page2{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 5em;
+}
+
 
 #pages{
   font-size: 14px;
@@ -590,3 +621,6 @@ h7 {
   margin-top: 6px;
 }
 
+.hidden{
+  display: none;
+}

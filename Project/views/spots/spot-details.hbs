@@ -16,9 +16,9 @@
     <h3>{{coordinates}}</h3>
 
     <form action="/{{_id}}/saveFavouriteSpot" method="POST" >
-        <button type="submit">
+        <button id="favourite" type="submit">
             {{#if isUserFavourite}}
-                Remove
+                Remove 
             {{else}}
                 Add 
             {{/if}}
