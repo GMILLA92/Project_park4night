@@ -45,7 +45,11 @@
     {{/if}}
      {{#if amenities.Electricity}}
     <h3>Electricity</h3>
+
     {{/if}}
+    {{#unless amenities}}
+        <h3>No amenities known in this spot</h3>
+    {{/unless}}
     
     <hr style="width: 70%;">
 

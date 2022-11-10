@@ -205,9 +205,22 @@ router.post("/addSpot", fileUploader.array('images'), async (req, res) => {
     const newSpot = await Spot.create({ name, coordinates, address, images, description, province, amenities, rating, webpage })
     console.log("Spot Created")
 
-    res.redirect("/")
-  } catch (err) {
+    res.redirect("/map")
+  } catch(err){
+      if (err instanceof mongoose.Error.ValidationError) {
+        res.status(500).render("spots/addSpot",  { errorMessage: err.message, layout: false });
+      } else if (err.code === 11000) {
+        res.status(500).render("spots/addSpot", {
+          errorMessage:
+            "The name of the spot and the coordinates should be unique",
+            layout: false
+        });
+      } else {
+        next(err);
+      }
+
     console.log(err)
+   
   }
 })
 
