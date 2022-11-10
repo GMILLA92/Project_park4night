@@ -1,19 +1,20 @@
 
 <div id="spot-details">
+  <div class="scroll-container">
+    {{#each images.imagesUrl}}
+     <div class="scroll-page"> <img id="spot" src= "{{this}}"/> </div>
+    {{/each}}
+</div>
 
     <h3>{{name}}</h3>
     <div id="rating">Rate:{{rating}}</div>
     <div id="description">{{description}}</div>
     
-    <div class="scroll-container">
-    {{#each images.imagesUrl}}
-     <div class="scroll-page"> <img id="spot" src= "{{this}}"/> </div>
-    {{/each}}
-    </div>
+  
     
     <h3>{{province}}</h3>
     <h3>{{coordinates}}</h3>
-    <h2>AMENITIES :</h2>
+    <h2>AMENITIES</h2>
 
     {{#if amenities.Trash_can}}
     <h3>Trash can</h3>

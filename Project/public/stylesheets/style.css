@@ -4,8 +4,7 @@ body {
   /* padding: 50px; */
   margin: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  width: 390px;
-  height: 744px;
+  width: 100vw;
 }
 
 section{
@@ -16,9 +15,15 @@ section{
   right: 0px;
   overflow: auto;
 }
-
+span{
+  margin:10px;
+  padding: 5px;
+}
 a {
   color: #00b7ff;
+  
+  margin: 12px;
+  font-size: 20px;
 }
 
 h1 {
@@ -109,15 +114,30 @@ footer{
   overflow: hidden;
 }
 
-img{
-  width: 80px;
+#background{
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("/images/background.jpeg");;
 }
 
-.van-logo{
-  height: 50px;
-  margin-right: 10px;
-  object-fit: cover;
+#image_label{
+  background-color: white;
 }
+
+img{
+  width: 80px;
+} 
+
+.van-logo{
+  width: 76px;
+  object-fit: cover;
+  margin-top: -46px;
+  margin-left: -22px;
+  position: absolute;
+}
+
 
 #form{
   display: flex;
@@ -129,7 +149,9 @@ img{
   display: flex;
   flex-direction: column;
   align-items: center; 
-  font-size: 40px; 
+  font-size: 27px; 
+  padding: 5px;
+  margin-top: 40px;
 }
 
 #form form{
@@ -137,18 +159,29 @@ img{
   flex-direction: column;
   margin-left: 20px;
   font-size: 24px;
+  margin-top: 30px;
 }
 
 #form button{
+  border: solid;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   margin-top: 40px;
-  font-size: 30px;
+  font-size: 26px;
+  color: white;
+  background-color: black;
+  width: fit-content;
+  align-items: center;
+  padding: 10px;
+  border-end-start-radius: 10px;
 }
+
 
 #form input{
   border-radius: 5px;
   border-width: thin;
+  height: 34px;
+  font-size: 18px;
 }
 
 #form label{
@@ -169,6 +202,7 @@ img{
   flex-direction: column;
   align-items: center; 
   font-size: 40px; 
+  margin-top: 58px;
 }
 
 #login-form form{
@@ -180,10 +214,17 @@ img{
 }
 
 #login-form button{
+  border: solid;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   margin-top: 40px;
-  font-size: 30px;
+  font-size: 26px;
+  color: white;
+  background-color: black;
+  width: fit-content;
+  align-items: center;
+  padding: 10px;
+  border-end-start-radius: 10px;
 }
 
 #login-form label{
@@ -193,6 +234,9 @@ img{
 #login-form input{
   border-radius: 5px;
   border-width: thin;
+  height: 34px;
+  font-size: 18px;
+  width: 247px;
 }
 
 #form-spot{
@@ -208,18 +252,27 @@ img{
   font-size: 40px; 
 }
 
+#ratinginput input{
+  height: 20px;
+  width: 20px;
+}
 #form-spot form{
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
   font-size: 24px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 #form-spot button{
   display: flex;
   justify-content: center;
   margin-top: 40px;
-  font-size: 30px;
+  font-size: 21px;
+  width: fit-content;
+  padding: 12px;
+  align-self: center;
+  border-bottom-right-radius: 17px;
 }
 
 #form-spot label{
@@ -229,6 +282,7 @@ img{
 #form-spot input{
   border-radius: 5px;
   border-width: thin;
+  height: 30px;
 }
 
 .description-spot{
@@ -364,7 +418,7 @@ isLoggedIn
 
 #spot{
   display: flex;
-  width: 80vw;
+  width: 100vw;
 }
 
 #list_spots{
@@ -377,7 +431,7 @@ isLoggedIn
 
 #description{
   display: flex;
-  margin-left: 5px;
+  margin-left: 9px;
   margin-bottom: 20px;
   margin-top: 16px;
 }
@@ -388,12 +442,12 @@ isLoggedIn
   display: block;
   margin: 0 auto;
   text-align: center;
-  
+  width: 100vw;
 }
 
 .scroll-container {
-  width: 300px;
-  height: 200px;
+  width: 100vw;
+  
   overflow-y: hidden;
   overflow-x: scroll;
   scroll-behavior: smooth;
@@ -419,8 +473,14 @@ h3{
  
 }
 h2{
- color: #5EBE90;
- font-size: 18px;
+ color: black;
+ font-size: 16px;
+ text-decoration: underline;
+}
+h8{
+  width: 200px;
+  margin: 30px;
+  font-size: 18;
 }
 
 #spotDetails{
@@ -451,10 +511,11 @@ h2{
 
 #button_2{
 background-color: #5EBE90;
-
+margin-bottom: 30px;
 margin-top: 20px;
 font-size: 17px;
-padding: 5px;
+padding: 8px;
+border-bottom-right-radius: 12px;
 }
 
 #description-comment{
@@ -475,14 +536,27 @@ p3{
   margin: 20px;
   margin-left: 211px;
 }
+p1{
+  display: flex;
+  background-color: rgb(133, 201, 240);
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 11px;
+  margin: 28px;
+
+}
 
 #button_3{
   background-color: #5EBE90;
-  width:fit-content;
-  align-content: center;
-  margin: 20px;
-  font-size: 22px;
-  padding: 5px;
+    width: fit-content;
+    align-content: center;
+    margin: 20px;
+    font-size: 22px;
+    padding: 8px;
+    border-bottom-right-radius: 20px;
+    margin: -5px;
+    align-items: flex-end;
+    margin-right: 236px;
 }
 
 h5{
@@ -493,3 +567,9 @@ h7 {
   font-size: 18px;
   margin-right: 4px;
 }
+
+#logout_button{
+  font-size: 24px;
+  margin-top: 6px;
+}
+

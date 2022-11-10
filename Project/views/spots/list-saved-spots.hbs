@@ -1,19 +1,24 @@
 {{#each UserSpot}}
+
+
 <div id="list_spots">
-     <a href="/spot/{{this.spot._id}}" id="spotDetails">{{this.spot.name}}</a>
-    <div id="description">{{this.spot.description}}</div>
-    
-    <div class="scroll-container">
+
+     <div class="scroll-container">
     {{#each this.spot.images.imagesUrl}}
      <div class="scroll-page"> <img id="spot" src= "{{this}}"/> </div>
     {{/each}}
     </div>
 
+     <a href="/spot/{{this.spot._id}}" id="spotDetails">{{this.spot.name}}</a>
+    <div id="description">{{this.spot.description}}</div>
+    
+   
+
     <h3>{{this.spot.coordinates}}</h3>
     {{#if this.spot.amenities.Webpage}}
         <h3>Webpage</h3>
     {{/if}}
-    <h2>AMENITIES :</h2>
+    <h2>AMENITIES</h2>
 
     {{#if this.spot.amenities.Trash_can}}
     <h3>Trash can</h3>

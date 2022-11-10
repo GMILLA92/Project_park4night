@@ -6,13 +6,12 @@
     <title>{{appTitle}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
-
+<div id="background">
 
 <div id="form">
-  <h2>Create Account</h2>
   <form action="/signup" method="POST">
 
-    <label> Full Name
+    <label>Full name
       <input type="text" name="fullName" placeholder="Your full name" />
     </label>
 
@@ -28,7 +27,7 @@
       <input type="password" name="password" placeholder="Your password" />
     </label>
 
-    <label> Upload Image
+    <label id="image_label"> Upload Image
       <input type="file"accept="image/png, image/jpeg" name="profileImage" placeholder="Profile Images" >
     </label>
 
@@ -36,16 +35,19 @@
     <button type="submit">Sign Up</button>
 
 
+
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
   </form>
+
 </div>
+</div>  
 
  <nav>
       <ul class="nav-bar">
         <li id="to-left">
-          <img class="van-logo" src="images/van-logo.png" alt="">
+          <img class="van-logo" src="/images/VAN.png" alt="">
           {{!-- <p>AIRBNVAN</p> --}}
         </li>
         <li id="to-right">
