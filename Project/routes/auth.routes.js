@@ -201,28 +201,30 @@ router.post("/addSpot", fileUploader.array('images'), async (req, res) => {
   if (Drinking_water) { amenities.Drinking_water = true }
   if (Shower) { amenities.Shower = true }
 
-  try {
-    const newSpot = await Spot.create({ name, coordinates, address, images, description, province, amenities, rating, webpage })
-    console.log("Spot Created")
+  
+    try {
+      const newSpot = await Spot.create({ name, coordinates, address, images, description, province, amenities, rating, webpage })
+      console.log("Spot Created")
 
-    res.redirect("/map")
-  } catch(err){
-      if (err instanceof mongoose.Error.ValidationError) {
-        res.status(500).render("spots/addSpot",  { errorMessage: err.message, layout: false });
-      } else if (err.code === 11000) {
-        res.status(500).render("spots/addSpot", {
-          errorMessage:
-            "The name of the spot and the coordinates should be unique",
-            layout: false
-        });
-      } else {
-        next(err);
-      }
+      res.redirect("/map")
+    } catch(err){
+        if (err instanceof mongoose.Error.ValidationError) {
+          res.status(500).render("spots/addSpot",  { errorMessage: err.message, layout: false });
+        } else if (err.code === 11000) {
+          res.status(500).render("spots/addSpot", {
+            errorMessage:
+              "The name of the spot and the coordinates should be unique",
+              layout: false
+          });
+        } else {
+          next(err);
+        }
 
-    console.log(err)
-   
-  }
-})
+      console.log(err)
+    
+    }
+  
+  })
 
 router.get("/savedSpots", async (req, res) => {
   console.log("hola")
@@ -283,7 +285,6 @@ router.get("/addComment/:spotID", (req, res) => {
 
 router.post("/publishComment/:spotID", async (req, res) => {
 
-  
     try{
       const authorSaved = await User.findById(req.session.currentUser._id)
       const spotSaved = await Spot.findById(req.params.spotID)
@@ -303,6 +304,40 @@ router.post("/publishComment/:spotID", async (req, res) => {
       console.log(err)
     }
 })
+
+router.get("/addLike/:commentID", async (req, res) => {
+  try{
+   
+    const commentSaved = await Comment.findById(req.params.commentID)
+    const user1 = await User.findById(req.session.currentUser._id).populate("commentLike")
+   
+    let found = 0
+   
+    user1.commentLike.forEach ((element) => {
+      if (element.comment._id = commentSaved._id){
+        found = 1;
+      }
+    })
+ 
+    if (found === 1){
+      res.redirect("/map")
+    } else{
+
+      const Like = {
+      comment: req.params.commentID,
+      user: req.session.currentUser._id,
+      }
+      const newLike = await CommentLike.create(Like)
+      const comment = await Comment.findByIdAndUpdate(req.params.commentID, { $push: { commentLike: newLike._id } } )
+      const user2 = await User.findByIdAndUpdate(req.session.currentUser._id, { $push: { commentLike: newLike._id } } )
+    
+      res.redirect("/savedSpots")
+  }
+  }catch(err){
+    console.log(err)
+  }
+
+});
 
 router.post('/:spotId/saveFavouriteSpot', async (req, res) => {
   if (!req.session?.currentUser?._id) return res.status(403).json({
