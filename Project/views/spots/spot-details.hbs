@@ -44,16 +44,15 @@
         <h3>No amenities known in this spot</h3>
     {{/unless}}
 
-
+{{!-- 
     {{#each comments}}
         <p4>{{this.description}}</p4>
         <p3>By: {{this.author.fullName}}</p3>
        
-        <a href="/addLike/{{this._id}}"><img id="symbol" src="/images/like.png"/></a>
-        <div id="number_likes">{{this.commentLike.length}} likes</div>
+
        
      <hr style="width: 70%;">
-    {{/each}}
+    {{/each}} --}}
 
         <form action="/{{_id}}/saveFavouriteSpot" method="POST" >
             <button id="favourite" type="submit">
@@ -73,8 +72,16 @@
     <div id="box-comment">
         {{#each comments}}
             <div class="each-comment">
-                <p4>{{this.description}}</p4>
-                <p3>By: {{this.author.fullName}}</p3>
+                <div id="likedescription">
+                    <p4>{{this.description}}</p4>
+                </div>    
+                <div class="likeAuthor">
+                    <p3>By: {{this.author.fullName}}</p3>
+                    <div class="likeModul">
+                        <a href="/addLike/{{this._id}}"><img id="symbol" src="/images/like.png"/></a>
+                        <div id="number_likes">{{this.commentLike.length}} likes</div>
+                    </div>
+                </div>
             </div>  
             <hr style="width: 70%;">    
         {{/each}}

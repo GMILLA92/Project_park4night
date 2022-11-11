@@ -313,15 +313,15 @@ router.get("/addLike/:commentID", async (req, res) => {
    
     let found = 0
    
-    user1.commentLike.forEach ((element) => {
-      if (element.comment._id = commentSaved._id){
-        found = 1;
-      }
-    })
+    // user1.commentLike.forEach ((element) => {
+    //   if (element.comment._id = commentSaved._id){
+    //     found = 1;
+    //   }
+    // })
  
-    if (found === 1){
-      res.redirect("/map")
-    } else{
+    // if (found === 1){
+    //   res.redirect("/map")
+    // } else{
 
       const Like = {
       comment: req.params.commentID,
@@ -332,7 +332,7 @@ router.get("/addLike/:commentID", async (req, res) => {
       const user2 = await User.findByIdAndUpdate(req.session.currentUser._id, { $push: { commentLike: newLike._id } } )
     
       res.redirect("/savedSpots")
-  }
+  // }
   }catch(err){
     console.log(err)
   }

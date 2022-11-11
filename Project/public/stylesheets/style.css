@@ -486,7 +486,7 @@ isLoggedIn
   display: flex;
   width: 100vw;
   object-fit: cover;
-
+  height: 380px;
 }
 
 
@@ -598,7 +598,7 @@ h8{
   align-items: center;
   margin-left: 15px;
   margin-right: 15px;
-  background-color: #E59400;
+  background-color: #a8cba9;
   box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   width: 70vw;
@@ -623,7 +623,7 @@ h8{
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: red;
+  background-color: rgb(166, 69, 69);
 }
 
 #button_2{
@@ -645,7 +645,7 @@ border-bottom-right-radius: 12px;
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 15px;
-  background-color: #E59400;
+  background-color: #a8cba9;
   border-radius: 3px;
   box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -757,7 +757,7 @@ h7 {
   align-items: center;
   margin-left: 15px;
   margin-right: 15px;
-  background-color: #E59400;
+  background-color: #a8cba9;
   box-shadow: 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   width: 370px;
@@ -824,4 +824,23 @@ h9{
   justify-content: center;
   font-size: 25px;
   text-align: center;
+}
+
+.likeAuthor{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: flex-end;
+  flex-direction: row-reverse;
+}
+
+p4{
+  padding-top: 10px;
+}
+
+.likeModul{
+  margin-left: 20px;
+}
+#likedescription{
+  padding-top: 10px;
 }
