@@ -4,54 +4,46 @@
      <div class="scroll-page"> <img id="spot" src= "{{this}}"/> </div>
     {{/each}}
 </div>
-
-    <h3>{{name}}</h3>
-    <div id="rating">Rate:{{rating}}</div>
+    <div id="name-rating">
+        <h3>{{name}}</h3>
+        <div id="rating">{{rating}} / 10</div>
+    </div>    
     <div id="description">{{description}}</div>
     
-  
-    
-    <h3>{{province}}</h3>
-    <h3>{{coordinates}}</h3>
+    <div id="coordinates-province">
+        <h3>{{province}}</h3>
+        <h3>{{coordinates}}</h3>
+    </div>
 
-    <form action="/{{_id}}/saveFavouriteSpot" method="POST" >
-        <button id="favourite" type="submit">
-            {{#if isUserFavourite}}
-                Remove 
-            {{else}}
-                Add 
+    <div id="css-amenities">
+        <h9>AMENITIES </h9>
+
+        <div class="amenities-iconos">
+            {{#if amenities.Trash_can}}
+            <img src="/images/bin.png" id="logo_amenities"/>
             {{/if}}
-             favourite
-
-        </button>
-    </form>
-    <h6>AMENITIES :</h6>
-
-    {{#if amenities.Trash_can}}
-    <img src="/images/bin.png" id="logo_amenities"/>
-    {{/if}}
-     {{#if amenities.Shower}}
-     <img src="/images/shower.png" id="logo_amenities"/>
-    {{/if}}
-     {{#if amenities.Toilet}}
-    <img src="/images/toilet.png" id="logo_amenities"/>
-    {{/if}}
-     {{#if amenities.Drinking_water}}
-    <img src="/images/water-tap.png" id="logo_amenities"/>
-    {{/if}}
-     {{#if amenities.Electricity}}
-    <img src="/images/energy.png" id="logo_amenities"/>
-    {{/if}}
-     {{#if amenities.BBQ}}
-    <img src="/images/barbecue.png" id="logo_amenities"/>
-    {{/if}}
-
+            {{#if amenities.Shower}}
+            <img src="/images/shower.png" id="logo_amenities"/>
+            {{/if}}
+            {{#if amenities.Toilet}}
+            <img src="/images/toilet.png" id="logo_amenities"/>
+            {{/if}}
+            {{#if amenities.Drinking_water}}
+            <img src="/images/water-tap.png" id="logo_amenities"/>
+            {{/if}}
+            {{#if amenities.Electricity}}
+            <img src="/images/energy.png" id="logo_amenities"/>
+            {{/if}}
+            {{#if amenities.BBQ}}
+            <img src="/images/barbecue.png" id="logo_amenities"/>
+            {{/if}}
+        </div>
+    </div>
   
     {{#unless amenities}}
         <h3>No amenities known in this spot</h3>
     {{/unless}}
-    
-    <hr style="width: 70%;">
+
 
     {{#each comments}}
         <p4>{{this.description}}</p4>
@@ -63,6 +55,30 @@
      <hr style="width: 70%;">
     {{/each}}
 
+        <form action="/{{_id}}/saveFavouriteSpot" method="POST" >
+            <button id="favourite" type="submit">
+                {{#if isUserFavourite}}
+                    Remove 
+                {{else}}
+                    Add 
+                {{/if}}
+                favourite
+
+            </button>
+        </form>
+
+    <hr style="width: 70%;">
+
+
+    <div id="box-comment">
+        {{#each comments}}
+            <div class="each-comment">
+                <p4>{{this.description}}</p4>
+                <p3>By: {{this.author.fullName}}</p3>
+            </div>  
+            <hr style="width: 70%;">    
+        {{/each}}
+    </div>
     
 
 
