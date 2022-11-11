@@ -1,4 +1,3 @@
-
 <div id="spot-details">
   <div class="scroll-container">
     {{#each images.imagesUrl}}
@@ -45,6 +44,17 @@
         <h3>No amenities known in this spot</h3>
     {{/unless}}
 
+
+    {{#each comments}}
+        <p4>{{this.description}}</p4>
+        <p3>By: {{this.author.fullName}}</p3>
+       
+        <a href="/addLike/{{this._id}}"><img id="symbol" src="/images/like.png"/></a>
+        <div id="number_likes">{{this.commentLike.length}} likes</div>
+       
+     <hr style="width: 70%;">
+    {{/each}}
+
         <form action="/{{_id}}/saveFavouriteSpot" method="POST" >
             <button id="favourite" type="submit">
                 {{#if isUserFavourite}}
@@ -58,6 +68,7 @@
         </form>
 
     <hr style="width: 70%;">
+
 
     <div id="box-comment">
         {{#each comments}}

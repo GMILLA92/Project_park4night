@@ -134,10 +134,37 @@ footer{
   background-size: cover;
   background-image: url("/images/background2.jpg");
 }
+
+#image_error_background{
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(/images/library.jpg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#errors{
+  display: flex;
+    background-color: white;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 16px;
+    margin-bottom: 549px;
+}
+h11{
+  font-size: 20px;
+  display: flex;
+}
 h10{
   position: absolute;
   margin-top: 24px;
-  margin-left: 74px;
+  margin-left: 79px;
   font-size: 25px;
   color: white;
 }
@@ -154,6 +181,14 @@ img{
   position: absolute;
 }
 
+h12{
+  display: flex;
+  color:rgb(22, 55, 19)
+}
+#symbol{
+  width: 26px;
+  display: flex;
+}
 
 #form{
   display: flex;
@@ -451,6 +486,7 @@ isLoggedIn
   display: flex;
   width: 100vw;
   object-fit: cover;
+
 }
 
 
@@ -522,7 +558,6 @@ isLoggedIn
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  height: 100%;
   font-size: 5em;
 }
 
@@ -552,7 +587,7 @@ h2{
 h8{
   width: 200px;
   margin: 30px;
-  font-size: 18;
+  font-size: 21;
 }
 
 #spotDetails{
