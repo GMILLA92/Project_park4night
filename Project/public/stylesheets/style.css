@@ -450,6 +450,7 @@ isLoggedIn
 #spot{
   display: flex;
   width: 100vw;
+  object-fit: cover;
 }
 
 
@@ -464,7 +465,7 @@ isLoggedIn
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  height: 50vh;
 }
 
 #description{
